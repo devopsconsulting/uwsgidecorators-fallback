@@ -40,8 +40,8 @@ setup(
     keywords='uwsgi',
     author='Lars van de Kerkhof',
     author_email='lars@permanentmarkers.nl',
-    url='',
-    license='',
+    url='https://github.com/devopsconsulting/uwsgidecorators-fallback',
+    license='GPL',
     # include all packages in the egg, except the test package.
     py_modules=['uwsgidecoratorsfallback'],
     # include non python files
