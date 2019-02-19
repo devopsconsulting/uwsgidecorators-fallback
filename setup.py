@@ -26,7 +26,7 @@ either do nothing or run the function synchronously.
 from setuptools import setup, find_packages
 
 
-__version__ = "0.0.3"
+__version__ = "0.0.4"
 
 
 setup(
@@ -50,5 +50,6 @@ setup(
     # specify dependencies
     install_requires=[
         'setuptools',
+        'uwsgidecorators',
     ],
 )
