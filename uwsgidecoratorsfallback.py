@@ -1,3 +1,6 @@
+import logging
+logger = logging.getLogger("uwsgidecorators.fallback")
+
 class BaseDecorator(object):
     @property
     def spool(self):
@@ -47,6 +50,7 @@ class Spooler(BaseDecorator):
 try:
     from uwsgidecorators import *
 except ImportError:
+    logger.warn("No uwsgidecorators module available, using fallbacks")
     class lock(BaseDecorator):
         pass
 
