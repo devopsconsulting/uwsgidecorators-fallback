@@ -1,5 +1,7 @@
 import logging
+
 logger = logging.getLogger("uwsgidecorators.fallback")
+
 
 class BaseDecorator(object):
     @property
@@ -12,8 +14,8 @@ class BaseDecorator(object):
     def __call__(self, *args, **kwargs):
         return self.f(*args, **kwargs)
 
-class BaseDecoratorWithArguments(object):
 
+class BaseDecoratorWithArguments(object):
     def __init__(self, *args, **kwargs):
         # because we are so fake we don't give a shit about the arguments
         pass
@@ -28,8 +30,10 @@ class Spooler(BaseDecorator):
         # this is strange because spool can be used either with or without
         # keyword arguments.
         if f is not None and callable(f):
+
             def wrapped_func(**kwargs):
                 return f(kwargs)
+
             super(Spooler, self).__init__(wrapped_func)
         else:
             self.pass_arguments = pass_arguments
@@ -40,8 +44,10 @@ class Spooler(BaseDecorator):
             if self.pass_arguments:  # with pass_arguments spool is just normal
                 return BaseDecorator(f)
             else:  # keyword arguments are passed as a dict to spool
+
                 def wrapped_func(**kwargs):
                     return f(kwargs)
+
                 return BaseDecorator(wrapped_func)
         else:
             super(Spooler, self).__call__(f=f, **kwargs)
@@ -51,6 +57,7 @@ try:
     from uwsgidecorators import *
 except ImportError:
     logger.warn("No uwsgidecorators module available, using fallbacks")
+
     class lock(BaseDecorator):
         pass
 
@@ -62,3 +69,6 @@ except ImportError:
 
     class timer(BaseDecoratorWithArguments):
         pass
+
+    def postfork(func):
+        return func

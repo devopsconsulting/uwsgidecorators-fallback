@@ -14,11 +14,12 @@ this module provides fallbacks for the following uwsgi decorators::
     lock
     cron
     timer
+    postfork
 
 usage, just import the decorators from uwsgidecoratorsfallback instead of
 uwsgidecorators and your code will nolonger import error outside of uwsgi::
 
-    from uwsgidecoratorsfallback import spool, lock, cron, timer
+    from uwsgidecoratorsfallback import spool, lock, cron, timer, postfork
 
 After that just use as intended, outside of uwsgi you get alternatives that
 either do nothing or run the function synchronously.
