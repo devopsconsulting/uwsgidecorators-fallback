@@ -56,7 +56,7 @@ class Spooler(BaseDecorator):
 try:
     from uwsgidecorators import *
 except ImportError:
-    logger.warn("No uwsgidecorators module available, using fallbacks")
+    logger.warning("No uwsgidecorators module available, using fallbacks")
 
     class lock(BaseDecorator):
         pass
